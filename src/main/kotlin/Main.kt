@@ -1,44 +1,55 @@
-import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.unit.dp
+
+
+// Custom Green Color Scheme for Dark Mode
+private val DarkGreenColorScheme = darkColorScheme(
+    primary = Color(0xFF4CAF50), // Green (Primary color)
+    onPrimary = Color.White,    // Text color on primary
+    primaryContainer = Color(0xFF388E3C), // Darker green for containers
+    onPrimaryContainer = Color.White,
+    secondary = Color(0xFF81C784), // Light green (Secondary color)
+    onSecondary = Color.Black,
+    background = Color(0xFF121212), // Dark background
+    onBackground = Color.White,
+    surface = Color(0xFF1E1E1E), // Dark surface
+    onSurface = Color.White,
+    error = Color(0xFFCF6679), // Error color (default Material color)
+    onError = Color.Black
+)
 
 @Composable
-fun WelcomeScreen() {
-    // Apply Material Design 3 theme
-    MaterialTheme {
-        // Main content
+fun App() {
+    // Apply the custom dark green theme
+    MaterialTheme(
+        colorScheme = DarkGreenColorScheme
+    ) {
         Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier = androidx.compose.ui.Modifier.fillMaxSize(),
+            contentAlignment = androidx.compose.ui.Alignment.Center
         ) {
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
+
             ) {
-                // Welcome Text
+                // Welcome Message
                 Text(
-                    text = "Welcome to Compose Desktop!",
+                    "Welcome to adbFOX!",
                     style = MaterialTheme.typography.headlineMedium
                 )
 
-                // Primary Button
-                Button(
-                    onClick = { /* Handle click */ },
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                ) {
-                    Text("Get Started")
+                // Buttons
+                Button(onClick = { println("Install Button Clicked") }) {
+                    Text("Install A ROM")
                 }
 
-                // Outlined Button
-                OutlinedButton(
-                    onClick = { /* Handle click */ },
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                ) {
+                OutlinedButton(onClick = { println("Learn More clicked") }) {
                     Text("Learn More")
                 }
             }
@@ -46,9 +57,8 @@ fun WelcomeScreen() {
     }
 }
 
-// Entry point for the application
 fun main() = application {
-    Window(onCloseRequest = ::exitApplication, title = "Welcome Screen") {
-        WelcomeScreen()
+    Window(onCloseRequest = ::exitApplication, title = "adbFOX") {
+        App()
     }
 }
