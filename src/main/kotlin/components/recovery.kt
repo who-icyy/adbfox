@@ -1,4 +1,5 @@
-package  components
+package components
+
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Text
@@ -9,7 +10,7 @@ import java.awt.FileDialog
 import java.awt.Frame
 
 @Composable
-fun sideload() {
+fun recovery() {
     var selectedFilePath by remember { mutableStateOf<String?>(null) }
     var isConnected by remember { mutableStateOf(false) }
 
@@ -40,6 +41,16 @@ fun sideload() {
     ElevatedButton(onClick = {
 
     }, enabled = (isConnected && selectedFilePath!=null)) {
-        Text("Start")
+        Text("Flash Recovery")
+    }
+    ElevatedButton(onClick = {
+
+    }, enabled = (isConnected && selectedFilePath!=null)) {
+        Text("Boot Recovery")
+    }
+    ElevatedButton(onClick = {
+
+    }, enabled = (isConnected && selectedFilePath!=null)) {
+        Text("Flash Boot Recovery (MTK)")
     }
 }

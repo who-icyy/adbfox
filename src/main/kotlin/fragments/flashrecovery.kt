@@ -1,3 +1,5 @@
+package fragments
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -9,12 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import components.recovery
 import components.sideload
+import isAdbDeviceConnected
 import kotlinx.coroutines.delay
 import theme.LightColorScheme
 
 @Composable
-fun sideloading(navController: NavHostController) {
+fun flashRecovery(navController: NavHostController) {
     var isConnected by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -34,7 +38,7 @@ fun sideloading(navController: NavHostController) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    "Sideload Your ROM",
+                    "Flashing Recovery",
                     style = MaterialTheme.typography.headlineMedium
                 )
                 Row(
@@ -51,7 +55,7 @@ fun sideloading(navController: NavHostController) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(text = if (isConnected) "Connected" else "Disconnected")
                 }
-                sideload()
+                recovery()
                 Button(onClick = {
                     navController.navigateUp()
                 }) {

@@ -1,4 +1,3 @@
-import theme.LightColorScheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,9 +15,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import fragments.flashRecovery
+import fragments.sideloading
+import theme.LightColorScheme
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
+@Suppress("DEPRECATION")
 fun isAdbDeviceConnected(): Boolean {
     return try {
         val process = Runtime.getRuntime().exec("adb devices")
@@ -54,7 +57,7 @@ fun mainScreen(navController: NavHostController) {
                     style = MaterialTheme.typography.headlineMedium
                 )
                 Button(onClick = {
-                    navController.navigate("install_rom")
+                    navController.navigate("install_recovery")
                 }) {
                     Text("Flash Recovery")
                 }
@@ -85,6 +88,9 @@ fun appNavHost(navController: NavHostController) {
         }
         composable("install_rom") {
             sideloading(navController = navController)
+        }
+        composable("install_recovery") {
+            flashRecovery(navController = navController)
         }
     }
 }
