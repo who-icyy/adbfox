@@ -1,22 +1,17 @@
-import theme.LightColorScheme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import components.selectFileButton
+import components.sideload
 import kotlinx.coroutines.delay
+import theme.LightColorScheme
 
 @Composable
 fun sideloading(navController: NavHostController) {
@@ -39,7 +34,7 @@ fun sideloading(navController: NavHostController) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    "Install A ROM",
+                    "Sideload Your ROM",
                     style = MaterialTheme.typography.headlineMedium
                 )
                 Row(
@@ -56,7 +51,7 @@ fun sideloading(navController: NavHostController) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(text = if (isConnected) "Connected" else "Disconnected")
                 }
-                selectFileButton()
+                sideload()
                 Button(onClick = {
                     navController.navigateUp()
                 }) {
