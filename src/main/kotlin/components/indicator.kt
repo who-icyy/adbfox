@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
 
 @Composable
-fun StatusIndicator(
+fun indicator(
     isConnected: Boolean,
     modifier: Modifier = Modifier,
     dotSize: Dp = 12.dp,

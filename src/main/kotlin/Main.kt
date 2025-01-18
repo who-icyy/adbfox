@@ -75,7 +75,7 @@ fun appNavHost(navController: NavHostController) {
             mainScreen(navController = navController)
         }
         composable("install_rom") {
-            home(navController = navController)
+            home(navController = navController, isConnected = true )
         }
     }
 }
