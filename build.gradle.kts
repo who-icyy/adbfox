@@ -23,6 +23,7 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.material3)
     implementation(compose.materialIconsExtended)
+    implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
 }
 
 compose.desktop {
