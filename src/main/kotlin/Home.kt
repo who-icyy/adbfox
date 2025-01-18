@@ -1,3 +1,4 @@
+import Theme.LightColorScheme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -28,37 +29,39 @@ fun home(navController: NavHostController) {
         }
     }
 
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+    MaterialTheme(colorScheme = LightColorScheme) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
-            Text(
-                "Install A ROM",
-                style = MaterialTheme.typography.headlineMedium
-            )
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(12.dp)
-                        .background(
-                            color = if (isConnected) Color.Green else Color.Red,
-                            shape = MaterialTheme.shapes.small
-                        )
+                Text(
+                    "Install A ROM",
+                    style = MaterialTheme.typography.headlineMedium
                 )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = if (isConnected) "Connected" else "Disconnected")
-            }
-            selectFileButton()
-            Button(onClick = {
-                navController.navigateUp()
-            }) {
-                Text("Go Back")
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(12.dp)
+                            .background(
+                                color = if (isConnected) Color.Green else Color.Red,
+                                shape = MaterialTheme.shapes.small
+                            )
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(text = if (isConnected) "Connected" else "Disconnected")
+                }
+                selectFileButton()
+                Button(onClick = {
+                    navController.navigateUp()
+                }) {
+                    Text("Go Back")
+                }
             }
         }
     }

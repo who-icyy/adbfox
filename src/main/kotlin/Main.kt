@@ -1,10 +1,13 @@
+import Theme.LightColorScheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
@@ -29,22 +32,6 @@ fun isAdbDeviceConnected(): Boolean {
         false
     }
 }
-
-
-val LightColorScheme = lightColorScheme(
-    primary = Color(0xFFFF9800),
-    onPrimary = Color.White,
-    primaryContainer = Color(0xFFFFC947),
-    onPrimaryContainer = Color.Black,
-    secondary = Color(0xFFFFB74D),
-    onSecondary = Color.Black,
-    background = Color(0xFFFFFFFF),
-    onBackground = Color.Black,
-    surface = Color(0xFFF5F5F5),
-    onSurface = Color.Black,
-    error = Color(0xFFB00020),
-    onError = Color.White
-)
 
 @Composable
 fun mainScreen(navController: NavHostController) {
