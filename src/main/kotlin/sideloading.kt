@@ -19,7 +19,7 @@ import components.selectFileButton
 import kotlinx.coroutines.delay
 
 @Composable
-fun home(navController: NavHostController) {
+fun sideloading(navController: NavHostController) {
     var isConnected by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {

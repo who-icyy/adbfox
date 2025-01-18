@@ -53,11 +53,16 @@ fun mainScreen(navController: NavHostController) {
                     "Welcome to adbFOX!",
                     style = MaterialTheme.typography.headlineMedium
                 )
-                // Buttons
                 Button(onClick = {
                     navController.navigate("install_rom")
                 }) {
-                    Text("Install A ROM")
+                    Text("Flash Recovery")
+                }
+
+                Button(onClick = {
+                    navController.navigate("install_rom")
+                }) {
+                    Text("Sideload ROM")
                 }
 
                 ElevatedButton(onClick = {
@@ -79,7 +84,7 @@ fun appNavHost(navController: NavHostController) {
             mainScreen(navController = navController)
         }
         composable("install_rom") {
-            home(navController = navController)
+            sideloading(navController = navController)
         }
     }
 }
