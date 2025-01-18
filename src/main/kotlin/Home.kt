@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import components.selectFileButton
 
 @Composable
 fun home(navController: NavHostController) {
@@ -26,7 +27,9 @@ fun home(navController: NavHostController) {
                     "Install A ROM",
                     style = MaterialTheme.typography.headlineMedium
                 )
-                Text("Here you can install a ROM by following the steps.")
+                Text("Status : Disconnected")
+
+                selectFileButton()
 
                 Button(onClick = {
                     navController.navigateUp()
