@@ -13,6 +13,23 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
+fun isAdbDeviceConnected(): Boolean {
+    return try {
+        val process = Runtime.getRuntime().exec("adb devices")
+        val reader = BufferedReader(InputStreamReader(process.inputStream))
+        process.waitFor()
+        val output = reader.readLines()
+        val deviceLines = output.drop(1)
+        deviceLines.any { it.contains("device") && !it.contains("offline") && !it.contains("unauthorized") }
+    } catch (e: Exception) {
+        e.printStackTrace()
+        false
+    }
+}
+
 
 val LightColorScheme = lightColorScheme(
     primary = Color(0xFFFF9800),
@@ -75,7 +92,7 @@ fun appNavHost(navController: NavHostController) {
             mainScreen(navController = navController)
         }
         composable("install_rom") {
-            home(navController = navController, isConnected = true )
+            home(navController = navController)
         }
     }
 }
