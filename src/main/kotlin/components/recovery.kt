@@ -1,9 +1,14 @@
 package components
 
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
+import androidx.compose.ui.unit.dp
 import isAdbDeviceConnected
 import kotlinx.coroutines.delay
 import java.awt.FileDialog
@@ -35,7 +40,10 @@ fun recovery() {
     }
 
     selectedFilePath?.let {
-        Text(text = "Selected file: $it")
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 200.dp)
+        ) { Text(text = "Selected file: $it") }
     }
 
     ElevatedButton(onClick = {
