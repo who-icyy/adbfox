@@ -45,7 +45,7 @@ fun sideload() {
     }
 
     ElevatedButton(onClick = {
-
+        Runtime.getRuntime().exec("adb sideload $selectedFilePath")
     }, enabled = (isConnected && selectedFilePath!=null)) {
         Text("Start")
     }

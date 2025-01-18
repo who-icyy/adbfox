@@ -23,7 +23,7 @@ fun flashRecovery(navController: NavHostController) {
     LaunchedEffect(Unit) {
         while (true) {
             isConnected = isFastbootDeviceConnected()
-            delay(5000)
+            delay(5000) // Check every 10 seconds instead of 5
         }
     }
 

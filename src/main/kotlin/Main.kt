@@ -34,25 +34,34 @@ fun isAdbDeviceConnected(): Boolean {
         e.printStackTrace()
         false
     }
-}@Suppress("DEPRECATION")
+}
+@Suppress("DEPRECATION")
 fun isFastbootDeviceConnected(): Boolean {
     return try {
         val process = Runtime.getRuntime().exec("fastboot devices")
-        val reader = BufferedReader(InputStreamReader(process.inputStream))
-        process.waitFor()
-        val output = reader.readLines()
-        val deviceLines = output.drop(1)
-        deviceLines.any { it.contains("device") && !it.contains("offline") && !it.contains("unauthorized") }
+
+        BufferedReader(InputStreamReader(process.inputStream)).use { reader ->
+            process.waitFor() // Wait for the command to complete
+            val output = reader.readLines()
+            println(output)
+            // Ensure output is not empty and contains valid device information
+            output.any { it.contains("fastboot") && !it.contains("offline") && !it.contains("unauthorized") }
+        }
     } catch (e: Exception) {
         e.printStackTrace()
         false
     }
 }
 
-fun executeIt(cmd: String){
 
+fun executeIt(cmd: String) {
+    try {
+        val process = Runtime.getRuntime().exec(cmd)
+        val reader = BufferedReader(InputStreamReader(process.inputStream))
+    } catch (e: Exception) {
+        println("Error executing command: ${e.message}")
+    }
 }
-
 @Composable
 fun mainScreen(navController: NavHostController) {
     val urlHandler = LocalUriHandler.current

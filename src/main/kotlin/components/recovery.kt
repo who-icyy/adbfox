@@ -7,10 +7,7 @@ import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.unit.dp
-import isAdbDeviceConnected
-import kotlinx.coroutines.delay
 import java.awt.FileDialog
 import java.awt.Frame
 
@@ -18,14 +15,6 @@ import java.awt.Frame
 @Composable
 fun recovery() {
     var selectedFilePath by remember { mutableStateOf<String?>(null) }
-    var isConnected by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        while (true) {
-            isConnected = isAdbDeviceConnected()
-            delay(5000)
-        }
-    }
 
     Button(onClick = {
         val fileDialog = FileDialog(Frame(), "Select File", FileDialog.LOAD)
@@ -48,18 +37,18 @@ fun recovery() {
     }
 
     ElevatedButton(onClick = {
-
-    }, enabled = (isConnected && selectedFilePath!=null)) {
+        Runtime.getRuntime().exec("fastboot flash recovery $selectedFilePath")
+    }, enabled = (selectedFilePath!=null)) {
         Text("Flash Recovery")
     }
     ElevatedButton(onClick = {
-
-    }, enabled = (isConnected && selectedFilePath!=null)) {
+        Runtime.getRuntime().exec("fastboot boot $selectedFilePath")
+    }, enabled = (selectedFilePath!=null)) {
         Text("Boot Recovery")
     }
     ElevatedButton(onClick = {
-
-    }, enabled = (isConnected && selectedFilePath!=null)) {
+        Runtime.getRuntime().exec("fastboot flash boot $selectedFilePath")
+    }, enabled = (selectedFilePath!=null)) {
         Text("Flash Boot Recovery (MTK)")
     }
 }
