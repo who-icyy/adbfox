@@ -34,6 +34,23 @@ fun isAdbDeviceConnected(): Boolean {
         e.printStackTrace()
         false
     }
+}@Suppress("DEPRECATION")
+fun isFastbootDeviceConnected(): Boolean {
+    return try {
+        val process = Runtime.getRuntime().exec("fastboot devices")
+        val reader = BufferedReader(InputStreamReader(process.inputStream))
+        process.waitFor()
+        val output = reader.readLines()
+        val deviceLines = output.drop(1)
+        deviceLines.any { it.contains("device") && !it.contains("offline") && !it.contains("unauthorized") }
+    } catch (e: Exception) {
+        e.printStackTrace()
+        false
+    }
+}
+
+fun executeIt(cmd: String){
+
 }
 
 @Composable

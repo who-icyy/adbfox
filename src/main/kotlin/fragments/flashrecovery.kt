@@ -12,8 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import components.recovery
-import components.sideload
-import isAdbDeviceConnected
+import isFastbootDeviceConnected
 import kotlinx.coroutines.delay
 import theme.LightColorScheme
 
@@ -23,7 +22,7 @@ fun flashRecovery(navController: NavHostController) {
 
     LaunchedEffect(Unit) {
         while (true) {
-            isConnected = isAdbDeviceConnected()
+            isConnected = isFastbootDeviceConnected()
             delay(5000)
         }
     }
